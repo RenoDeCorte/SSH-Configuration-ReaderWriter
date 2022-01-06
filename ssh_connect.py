@@ -17,11 +17,8 @@ def check_if_file_exists(file_type):
     return file_path
 
 
-def create_ssh_connection(ip):
+def create_ssh_connection(ip, credentials_file, command_file):
     """ Create a SSH connection and execute commands """
-
-    global credentials_file
-    global command_file
 
     try:
         # Get credentials
@@ -87,6 +84,9 @@ def create_ssh_connection(ip):
         sys.exit()
 
 
-# check if file with login credentials exists
-credentials_file = check_if_file_exists("login credentials")
-command_file = check_if_file_exists("commands")
+def get_file_path():
+    # check if file with login credentials exists
+    credentials_file = check_if_file_exists("login credentials")
+    command_file = check_if_file_exists("commands")
+
+    return credentials_file, command_file
